@@ -4,7 +4,7 @@ public class SwitchboxBehaviour : MonoBehaviour
 {
 
 	public bool blockType = true;
-	public bool state = false;
+	public bool state;
 
 	[SerializeField] private Sprite solidSprite;
 	[SerializeField] private Sprite passthroughSprite;

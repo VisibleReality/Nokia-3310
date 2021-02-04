@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -5,16 +6,22 @@ public class PlayerBehaviour : MonoBehaviour
 	public float moveSpeed = 1;
 	public Vector3 swordPosition = new Vector3(0f, 0f, 0f);
 	public Quaternion swordRotation = new Quaternion(0f, 0f, 0f, 1f);
-	public bool hasKey = false;
+	public bool hasKey;
 	
 	[SerializeField] private Rigidbody2D rb;
 	[SerializeField] private GameObject sword;
+	[SerializeField] private SpriteRenderer thisRenderer;
 
 	private void Start()
 	{
 		if (rb == null)
 		{
 			rb = gameObject.GetComponent<Rigidbody2D>();
+		}
+
+		if (thisRenderer == null)
+		{
+			thisRenderer = gameObject.GetComponent<SpriteRenderer>();
 		}
 	}
 
@@ -83,5 +90,23 @@ public class PlayerBehaviour : MonoBehaviour
 		}
 
 		rb.velocity = velocity;
+	}
+
+	private IEnumerator BlinkSprite(int times)
+	{
+		for (; times != 0; times--)
+		{
+			thisRenderer.enabled = false;
+			yield return new WaitForSeconds(0.1f);
+			// ReSharper disable once Unity.InefficientPropertyAccess
+			thisRenderer.enabled = true;
+			yield return new WaitForSeconds(0.2f);
+		}
+	}
+
+	public void Hit()
+	{
+		Debug.Log("Hit!");
+		StartCoroutine(BlinkSprite(3));
 	}
 }

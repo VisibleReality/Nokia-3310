@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GlobalSwitchBehaviour : MonoBehaviour
 {
 	public bool isLocked = true;
-	public bool state = false;
+	public bool state;
 	public List<SwitchboxBehaviour> switchBoxList = new List<SwitchboxBehaviour>();
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
