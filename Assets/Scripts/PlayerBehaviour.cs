@@ -21,28 +21,28 @@ public class PlayerBehaviour : MonoBehaviour
 	private void Update()
 	{
 		// Set the position and rotation of the sword.
-		if (Input.GetKeyDown("w"))
+		if (Input.GetKey("w"))
 		{
 			swordPosition.x = 0f;
 			swordPosition.y = 1f;
 			swordRotation.z = 0f;
 			swordRotation.w = 1f;
 		}
-		else if (Input.GetKeyDown("s"))
+		else if (Input.GetKey("s"))
 		{
 			swordPosition.x = 0f;
 			swordPosition.y = -1f;
 			swordRotation.z = 1f;
 			swordRotation.w = 0f;
 		}
-		else if (Input.GetKeyDown("d"))
+		else if (Input.GetKey("d"))
 		{
 			swordPosition.x = 1f;
 			swordPosition.y = 0f;
 			swordRotation.z = -0.7f;
 			swordRotation.w = 0.7f;
 		}
-		else if (Input.GetKeyDown("a"))
+		else if (Input.GetKey("a"))
 		{
 			swordPosition.x = -1f;
 			swordPosition.y = 0f;

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,7 +7,8 @@ public class GlobalSwitchBehaviour : MonoBehaviour
 {
 	public bool isLocked = true;
 	public bool state = false;
-	
+	public List<SwitchboxBehaviour> switchBoxList = new List<SwitchboxBehaviour>();
+
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private Sprite offSprite;
 	[SerializeField] private Sprite onSprite;
@@ -17,7 +19,7 @@ public class GlobalSwitchBehaviour : MonoBehaviour
 	{
 		uiController = GameObject.Find("Main Camera").GetComponent<UIController>();
 	}
-	
+
 	private void Update()
 	{
 		// When unlocked, pressing h should toggle the switch.
@@ -32,6 +34,11 @@ public class GlobalSwitchBehaviour : MonoBehaviour
 			{
 				state = true;
 				spriteRenderer.sprite = onSprite;
+			}
+
+			foreach (var box in switchBoxList)
+			{
+				box.SetState(state);
 			}
 		}
 	}
