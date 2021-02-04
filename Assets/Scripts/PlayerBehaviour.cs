@@ -1,12 +1,12 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerBehaviour : MonoBehaviour
 {
 	public float moveSpeed = 1;
 	public Vector3 swordPosition = new Vector3(0f, 0f, 0f);
 	public Quaternion swordRotation = new Quaternion(0f, 0f, 0f, 1f);
+	public bool hasKey = false;
+	
 	[SerializeField] private Rigidbody2D rb;
 	[SerializeField] private GameObject sword;
 
@@ -20,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private void Update()
 	{
+		// Set the position and rotation of the sword.
 		if (Input.GetKeyDown("w"))
 		{
 			swordPosition.x = 0f;
@@ -52,7 +53,8 @@ public class PlayerBehaviour : MonoBehaviour
 		// Attack with a sword when J is pressed
 		if (Input.GetKeyDown("j"))
 		{
-			Instantiate(sword, transform.position + swordPosition, swordRotation, transform);
+			var thisTransform = transform;
+			Instantiate(sword, thisTransform.position + swordPosition, swordRotation, thisTransform);
 		}
 	}
 
