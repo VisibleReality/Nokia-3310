@@ -7,10 +7,15 @@ public class PlayerBehaviour : MonoBehaviour
 	public Vector3 swordPosition = new Vector3(0f, 0f, 0f);
 	public Quaternion swordRotation = new Quaternion(0f, 0f, 0f, 1f);
 	public bool hasKey;
-	
+	public int fullHp = 3;
+	public int hp = 3;
+	public Vector3 respawnPoint = new Vector3(0f, 0f, 0f);
+	public int artifactCount = 0;
+
 	[SerializeField] private Rigidbody2D rb;
 	[SerializeField] private GameObject sword;
 	[SerializeField] private SpriteRenderer thisRenderer;
+	[SerializeField] private UIController uiController;
 
 	private void Start()
 	{
@@ -22,6 +27,11 @@ public class PlayerBehaviour : MonoBehaviour
 		if (thisRenderer == null)
 		{
 			thisRenderer = gameObject.GetComponent<SpriteRenderer>();
+		}
+
+		if (uiController == null)
+		{
+			uiController = GameObject.Find("Main Camera").GetComponent<UIController>();
 		}
 	}
 
@@ -108,5 +118,24 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		Debug.Log("Hit!");
 		StartCoroutine(BlinkSprite(3));
+		hp--;
+		uiController.SetHealthIcon(hp);
+		if (hp == 0)
+		{
+			Kill();
+		}
+	}
+
+	private void Kill()
+	{
+		transform.position = respawnPoint;
+		hp = fullHp;
+		uiController.SetHealthIcon(fullHp);
+	}
+
+	public void GainArtifact()
+	{
+		artifactCount++;
+		uiController.ShowArtifactIcon(artifactCount);
 	}
 }
