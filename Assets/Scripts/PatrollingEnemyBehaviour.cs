@@ -32,7 +32,7 @@ public class PatrollingEnemyBehaviour : MonoBehaviour
 			// Hit the player
 			other.gameObject.GetComponent<PlayerBehaviour>().Hit();
 		}
-		else if (other.CompareTag("Attack"))
+		else if (other.CompareTag("Attack") || other.CompareTag("Enemy") || other.CompareTag("Hazard"))
 		{
 			return;
 		}

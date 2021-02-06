@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
 	public int hp = 3;
 	public Vector3 respawnPoint = new Vector3(0f, 0f, 0f);
 	public int artifactCount = 0;
+	public bool invulnerable;
 
 	[SerializeField] private Rigidbody2D rb;
 	[SerializeField] private GameObject sword;
@@ -104,6 +105,8 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private IEnumerator BlinkSprite(int times)
 	{
+		invulnerable = true;
+		
 		for (; times != 0; times--)
 		{
 			thisRenderer.enabled = false;
@@ -112,22 +115,29 @@ public class PlayerBehaviour : MonoBehaviour
 			thisRenderer.enabled = true;
 			yield return new WaitForSeconds(0.2f);
 		}
+
+		invulnerable = false;
 	}
 
 	public void Hit()
 	{
-		Debug.Log("Hit!");
-		StartCoroutine(BlinkSprite(3));
-		hp--;
-		uiController.SetHealthIcon(hp);
-		if (hp == 0)
+		if (!invulnerable)
 		{
-			Kill();
+			Debug.Log("Hit!");
+			StartCoroutine(BlinkSprite(3));
+			hp--;
+			uiController.SetHealthIcon(hp);
+			if (hp == 0)
+			{
+				StartCoroutine(Kill());
+			}
 		}
 	}
 
-	private void Kill()
+	// ReSharper disable Unity.PerformanceAnalysis
+	private IEnumerator Kill()
 	{
+		yield return new WaitForSeconds(0.5f);
 		transform.position = respawnPoint;
 		hp = fullHp;
 		uiController.SetHealthIcon(fullHp);
