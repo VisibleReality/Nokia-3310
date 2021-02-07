@@ -3622,6 +3622,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 645589564407798044, guid: 44ca6224ca3d6e440b3d16252da7d175, type: 3}
+      propertyPath: movementVector.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 645589564407798044, guid: 44ca6224ca3d6e440b3d16252da7d175, type: 3}
+      propertyPath: movementVector.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 645589564407798045, guid: 44ca6224ca3d6e440b3d16252da7d175, type: 3}
       propertyPath: m_Name
       value: Patrolling Enemy (11)
@@ -10089,6 +10097,10 @@ PrefabInstance:
     - target: {fileID: 645589564407798040, guid: 44ca6224ca3d6e440b3d16252da7d175, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 645589564407798044, guid: 44ca6224ca3d6e440b3d16252da7d175, type: 3}
+      propertyPath: movementVector.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 645589564407798045, guid: 44ca6224ca3d6e440b3d16252da7d175, type: 3}
       propertyPath: m_Name
