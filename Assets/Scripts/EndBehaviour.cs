@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class EndBehaviour : MonoBehaviour
 {
 	private void Update()
 	{
